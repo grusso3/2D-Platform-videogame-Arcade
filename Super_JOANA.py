@@ -184,7 +184,7 @@ class MyGame(arcade.Window):
         self.end_of_map = 0
 
         # Starting level when loading the game
-        self.level = 5
+        self.level = 3
 
         # Load sounds
         self.collect_coin_sound = arcade.load_sound(":resources:sounds/coin1.wav")
@@ -579,6 +579,11 @@ class MyGame(arcade.Window):
                     self.life -= 1
                 else:
                     self.life = 0
+
+        # If you reach a score of 10, consume it to give an extra life point
+        if self.score == 10:
+            self.life += 1
+            self.score = 0
 
         # Restart the game when you have no more life
         if self.life == 0:
