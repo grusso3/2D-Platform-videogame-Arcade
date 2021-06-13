@@ -1,64 +1,131 @@
 """
-Super JOA
+Programming's project
 """
 import arcade
-import random
 import math
-import PIL
-from arcade.draw_commands import Texture
-from classes import *
+
+#import random
+#import PIL
+#from arcade.draw_commands import Texture
 
 # Constants
+# ======================================================================================================================
+
+# Screen
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 650
-SCREEN_TITLE = "Platformer"
+SCREEN_TITLE = "Super JOANA"
 
-
-# Constants used to scale our sprites from their original size
+# Size of our sprites
 CHARACTER_SCALING = 1
 TILE_SCALING = 0.5
 COIN_SCALING = 0.5
 SPRITE_LASER_SCALING = 0.8
-
-
-BULLET_SPEED = 5
-##map indicators
 SPRITE_PIXEL_SIZE = 128
 GRID_PIXEL_SIZE = (SPRITE_PIXEL_SIZE*TILE_SCALING)
-
 SPRITE_SIZE = int(SPRITE_PIXEL_SIZE*TILE_SCALING)
-# Movement speed of player, in pixels per frame
-PLAYER_MOVEMENT_SPEED = 3
 
-########
-GRAVITY = 0.8
-PLAYER_JUMP_SPEED = 13
-
-# How many pixels to keep as a minimum margin between the character
-# and the edge of the screen.
+# How many pixels to keep with each side of the camera
 LEFT_VIEWPORT_MARGIN = 250
 RIGHT_VIEWPORT_MARGIN = 250
 BOTTOM_VIEWPORT_MARGIN = 250
 TOP_VIEWPORT_MARGIN = 100
 
-PLAYER_START_X = 250
-PLAYER_START_Y = 2700
+# Player
+PLAYER_MOVEMENT_SPEED = 3 # horizontal speed
+PLAYER_JUMP_SPEED = 13 # vertical speed
+PLAYER_START_X = 250 # starting position (x coordinate)
+PLAYER_START_Y = 2700 # starting position (y coordinate)
+UPDATES_PER_FRAME = 4 # speed of the animation
+RIGHT_FACING = 0 # looks to the right at the start
+LEFT_FACING = 1 # looks to the left when walking to the left
 
-# For Explosion
+# Other
+GRAVITY = 0.8
+BULLET_SPEED = 5
 EXPLOSION_TEXTURE_COUNT = 60
+# ======================================================================================================================
 
+# Texture
+# ======================================================================================================================
 def load_texture_pair(filename):
-     """
-     Load a texture pair, with the second being a mirror image.
-     """
-     return [
-         arcade.load_texture(filename),
-         arcade.load_texture(filename, flipped_horizontally=True)
-     ]
+    """
+    Load a texture pair, with the second being a mirror image.
+    """
+    return [
+        arcade.load_texture(filename),
+        arcade.load_texture(filename, flipped_horizontally=True)
+    ]
+# ======================================================================================================================
 
 
+# Create a class for the player
+# ======================================================================================================================
+class PlayerCharacter(arcade.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.character_face_direction = RIGHT_FACING
+
+        # flipping between images
+        self.cur_texture = 0
+
+        self.scale = CHARACTER_SCALING
+        # Adjust the collision box
+        self.points = [[-22, -64], [22, -64], [22, 28], [-22, 28]]
+
+        # Load texture
+        main_path = ":resources:images/animated_characters/female_adventurer/femaleAdventurer"
+
+        # load texture for idle standing
+        self.idle_texture_pair = load_texture_pair(f"{main_path}_idle.png")
+
+        # Walking
+        self.walk_textures = []
+        for i in range(8):
+            texture = load_texture_pair(f"{main_path}_walk{i}.png")
+            self.walk_textures.append(texture)
+    def update_animation(self, delta_time: float = 1/60):
+
+        # figure out if we need to flip face left or right
+        if self.change_x < 0 and self.character_face_direction == RIGHT_FACING:
+            self.character_face_direction = LEFT_FACING
+        elif self.change_x > 0 and self.character_face_direction == LEFT_FACING:
+            self.character_face_direction = RIGHT_FACING
+        # idle animation
+        if self.change_x == 0 and self.change_y == 0:
+            self.texture = self.idle_texture_pair[self.character_face_direction]
+            return
+        # Walking animation
+
+        self.cur_texture +=1
+        if self.cur_texture > 7 * UPDATES_PER_FRAME:
+            self.cur_texture = 0
+        frame = self.cur_texture // UPDATES_PER_FRAME
+        direction = self.character_face_direction
+        self.texture = self.walk_textures[frame][direction]
+# ======================================================================================================================
+
+#  Create a class for the explosion
+# ======================================================================================================================
+class Explosion(arcade.Sprite):
+    """ This class is for explosion animation
+    """
+    def __init__(self,texture_list):
+        super().__init__()
+        # Start at the first frame
+        self.current_texture = 0
+        self.textures = texture_list
+    def update(self):
+        self.current_texture += 1
+        if self.current_texture < len(self.textures):
+            self.set_texture(self.current_texture)
+        else:
+            self.remove_from_sprite_lists()
+# ======================================================================================================================
 
 
+# Create a class for the game
+# ======================================================================================================================
 class MyGame(arcade.Window):
     """
     Main application class.
@@ -550,8 +617,6 @@ class MyGame(arcade.Window):
         if arcade.check_for_collision_with_list(self.player_sprite, self.trampoline_list):
             self.player_sprite.change_x = 0
             self.player_sprite.change_y = 20
-            #self.player_sprite.center_x = self.player_sprite.center_x
-            #self.player_sprite.center_y = self.player_sprite.center_y
 
 
         # Did SUPER JOA has been shot ?
@@ -635,6 +700,7 @@ class MyGame(arcade.Window):
                                 SCREEN_WIDTH + self.view_left,
                                 self.view_bottom,
                                 SCREEN_HEIGHT + self.view_bottom)
+# ======================================================================================================================
 
 
 def main():
