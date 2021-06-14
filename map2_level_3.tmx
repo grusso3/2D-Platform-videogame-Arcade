@@ -575,7 +575,7 @@
  </tileset>
  <layer id="6" name="ground" width="40" height="15">
   <data encoding="base64" compression="zlib">
-   eJzNlE8LgCAMxf3gdqlL0aFORRF+1hSUZLjp/EcP3qFN68ceS4j/SjV451nx7FYCwvhOrmrxUYLs8JnKsJQPmxtnnhRDzfnFmLA5GoZL+w7c6ZFvTBjDQ/Q44mYM6yEGw3YgvRLl7DFk8Nl65Utxt94P7sxS8k3p5Sg3X2x/W2nRXq19udrs1Xr/QwzbpC21B9CT1qP4GGN8KsH+2dg9t3d7Jb/M+Dle
+   eJzNlE8LgCAMxf3gdqlL0cFbUUSfNQUjGW66+YcevEOb1o89llL/1d3gnXvFs6YEhPEdqWrxUYLs8JnKsJQPmxtnnhRDzfmlmLA5OobD+ozc6ZFvShjDRfQ44mYM6zEGx7YhvRJJ9hgyhGy98qW4W+8Hd2Y5+eb0JJLmi+1vKy3Wq3eotzYHtd7/EMc2WWvrAfS096g+xhTfneHwbOqeqewHykw5TA==
   </data>
  </layer>
  <layer id="8" name="Enemies" width="40" height="15">

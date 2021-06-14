@@ -38,7 +38,7 @@ LEFT_FACING = 1 # looks to the left when walking to the left
 
 # Other
 GRAVITY = 0.8
-BULLET_SPEED = 10
+BULLET_SPEED = 8
 EXPLOSION_TEXTURE_COUNT = 60
 # ======================================================================================================================
 
@@ -184,7 +184,7 @@ class MyGame(arcade.Window):
         self.end_of_map = 0
 
         # Starting level when loading the game
-        self.level = 3
+        self.level = 1
 
         # Load sounds
         self.collect_coin_sound = arcade.load_sound(":resources:sounds/coin1.wav")
@@ -209,8 +209,7 @@ class MyGame(arcade.Window):
         self.view_bottom = 0
         self.view_left = 0
 
-        # Reset the initial value at beginning of every new level
-        self.score = 0
+        # Reset the number of life at the begining of every level
         self.life = 5
 
         # Create the Sprite lists
@@ -430,18 +429,6 @@ class MyGame(arcade.Window):
 
                     self.bullet_enemy_list.append(bullet_enemy)
 
-        # Get rid of the bullet_enemy when it flies of the screen
-        if not self.game_over:
-            self.enemy_list.update()
-
-            for enemy in self.enemy_list:
-                if len(arcade.check_for_collision_with_list(enemy, self.wall_list)) > 0:
-                    enemy.change_x *= -1
-                elif enemy.boundary_left is not None and enemy.left < enemy.boundary_left:
-                    enemy.change_x *= -1
-                elif enemy.boundary_right is not None and enemy.right > enemy.boundary_right:
-                    enemy.change_x *= -1
-
         # See if we reach a coin
         coin_hit_list = arcade.check_for_collision_with_list(self.player_sprite,
                                                              self.coin_list)
@@ -465,7 +452,6 @@ class MyGame(arcade.Window):
         for bullet in self.bullet_list:
             hit_list = arcade.check_for_collision_with_list(bullet, self.coin_list)
             hit_enemy = arcade.check_for_collision_with_list(bullet, self.enemy_list)
-            hit_trampoline = arcade.check_for_collision_with_list(bullet, self.trampoline_list)
             hit_wall = arcade.check_for_collision_with_list(bullet, self.wall_list)
 
             # Collision with the wall for player bullet

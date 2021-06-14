@@ -611,7 +611,7 @@
  </tileset>
  <layer id="7" name="Coins" width="40" height="17">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2DoghUD7YBRMGzBcE5bA+23gbZ/FFAPjMblKKAVAAAqEANJ
+   eJxjYBgFo2DoghUD7YBRMGzBcE5b1PLbChIwLeynlftGAfFgNOxGAa0AALOnEbk=
   </data>
  </layer>
  <layer id="14" name="Don't touch" width="40" height="17">
@@ -631,12 +631,12 @@
  </layer>
  <layer id="13" name="ground" width="40" height="17">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjILBA1xxsEcBKnAEYh8odiJC/WhYEgfcgNgdiD3wqBkNy8EBfKiIaWF2+iimCAMA+Vot5Q==
+   eJxjYBgFo2AUjILBA1xxsEcBKnAEYh8odiJC/WhYEgfcgNgdiD3wqBkNy8EBfKiIaWG27SimCAMAqqIgxQ==
   </data>
  </layer>
  <layer id="15" name="Enemies" width="40" height="17">
   <data encoding="base64" compression="zlib">
-   eJztzjEBAAAIA6D1D2U2W0wPSEACAF1zHQBeWx2FAL8=
+   eJztwTEBAAAAwqD1T20ND6AAAODHAAqgAAE=
   </data>
  </layer>
 </map>

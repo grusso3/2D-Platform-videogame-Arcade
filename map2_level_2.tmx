@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="128" tileheight="128" infinite="0" nextlayerid="7" nextobjectid="1">
- <tileset firstgid="1" name="my_tiles" tilewidth="128" tileheight="128" tilecount="166" columns="0">
+ <tileset firstgid="1" name="my_tiles" tilewidth="128" tileheight="128" tilecount="167" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
    <image width="128" height="128" source="images/tiles/boxCrate.png"/>
@@ -533,10 +533,13 @@
   <tile id="182">
    <image width="128" height="128" source="images/tiles/Trampoline.png"/>
   </tile>
+  <tile id="183">
+   <image width="128" height="128" source="images/enemies/New Piskel.png"/>
+  </tile>
  </tileset>
  <layer id="1" name="ground" width="25" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYKAMsCNhWgBamUst83PR+LVAXAfE9RSaSytgQoFekN9A/mJDwtj8q0rAHPQwIwcQsgMZgNxYTWM78oG4lAESFqTEPzY7qJ2GSPEHsQA9Dim1QwqIpYFYBo8aQnYQYwYhQIuwoqUduPxMih0wM0gNO5AdTCSoJxUYAbEOlexgxGM+NfzBiMUOZPNB2JgBUv5SEyObD8IAZS8T2A==
+   eJy1lLEOgCAMRMFB/0Fd3ZzU3zJOTkb9ddsQk4YgUGkveYMJ3HGFaEyZGoKGtHyl/Ffv+wQu4C701dJSsBe7Ya+aEOo7JHz8mf1RKoMKz3goZ2zAbtwsOPdPM+hcJN8Qp0eu/DsszWiBDugja1IZOR4pacxKM+OrMyfj9eDODjMqxnquJmAUyrARf4keNpBB/ZHZuP+vJNQfeQAk1xPI
   </data>
  </layer>
  <layer id="3" name="Background" width="25" height="20">
@@ -551,12 +554,12 @@
  </layer>
  <layer id="5" name="Ladder" width="25" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBi5wJwOdpgNEztGwSgYBaNgFAxuAAAhwACk
+   eJxjYBi5wJwOdpgNEztGwcgAwyW9juaJUTASAQBCFgFG
   </data>
  </layer>
  <layer id="6" name="Trampoline" width="25" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUEAu2MzA4DLQbRsEoGAWjABsAAH2sAPg=
+   eJxjYBgFo2AUEALbGRgcBtoNo2AUjIJRgA8AAIVkAPg=
   </data>
  </layer>
  <layer id="2" name="Coins" width="25" height="20">
